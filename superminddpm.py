@@ -140,6 +140,7 @@ def train_mnist(n_epoch: int = 100, device= "cuda" if torch.cuda.is_available() 
     tf = transforms.Compose(
         [transforms.ToTensor(), transforms.Resize(size[1:]), transforms.Normalize((0.5,), (1.0))]
     )
+    import multiprocessing as mp
     print(f"Running with {device} and {mp.cpu_count()} cores")
     dataset = MNIST(
         "./data",
@@ -147,7 +148,6 @@ def train_mnist(n_epoch: int = 100, device= "cuda" if torch.cuda.is_available() 
         download=True,
         transform=tf,
     )
-    import multiprocessing as mp
     dataloader = DataLoader(dataset, batch_size=128, shuffle=True, num_workers=mp.cpu_count())
     optim = torch.optim.Adam(ddpm.parameters(), lr=2e-4)
 
