@@ -140,7 +140,7 @@ def train_mnist(n_epoch: int = 100, device= "cuda:0" if torch.cuda.is_available(
     tf = transforms.Compose(
         [transforms.ToTensor(), transforms.Resize(size[1:]), transforms.Normalize((0.5,), (1.0))]
     )
-
+    print(f"Running with {device} and {mp.cpu_count()} cores")
     dataset = MNIST(
         "./data",
         train=True,
