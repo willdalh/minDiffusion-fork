@@ -68,8 +68,6 @@ class DummyEpsModel(nn.Module):
             blk(n_channel, 64),
             blk(64, 128),
             blk(128, 256),
-            blk(256, 512),
-            blk(512, 256),
             blk(256, 128),
             blk(128, 64),
             nn.Conv2d(64, n_channel, 3, padding=1),
@@ -133,13 +131,14 @@ class DDPM(nn.Module):
         return x_i
 
 
-def train_mnist(n_epoch: int = 100, device="cuda:0") -> None:
+def train_mnist(n_epoch: int = 100, device= "cuda:0" if torch.cuda.is_available() else "cpu") -> None:
 
-    ddpm = DDPM(eps_model=DummyEpsModel(1), betas=(1e-4, 0.02), n_T=1000)
+    ddpm = DDPM(eps_model=DummyEpsModel(1), betas=(1e-4, 0.02), n_T=10)
     ddpm.to(device)
 
+    size = (1, 28, 28) 
     tf = transforms.Compose(
-        [transforms.ToTensor(), transforms.Normalize((0.5,), (1.0))]
+        [transforms.ToTensor(), transforms.Resize(size[1:]), transforms.Normalize((0.5,), (1.0))]
     )
 
     dataset = MNIST(
@@ -148,7 +147,8 @@ def train_mnist(n_epoch: int = 100, device="cuda:0") -> None:
         download=True,
         transform=tf,
     )
-    dataloader = DataLoader(dataset, batch_size=128, shuffle=True, num_workers=20)
+    import multiprocessing as mp
+    dataloader = DataLoader(dataset, batch_size=128, shuffle=True, num_workers=mp.cpu_count())
     optim = torch.optim.Adam(ddpm.parameters(), lr=2e-4)
 
     for i in range(n_epoch):
@@ -170,7 +170,7 @@ def train_mnist(n_epoch: int = 100, device="cuda:0") -> None:
 
         ddpm.eval()
         with torch.no_grad():
-            xh = ddpm.sample(16, (1, 28, 28), device)
+            xh = ddpm.sample(16, size, device)
             grid = make_grid(xh, nrow=4)
             save_image(grid, f"./contents/ddpm_sample_{i}.png")
 
