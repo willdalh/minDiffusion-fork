@@ -131,9 +131,9 @@ class DDPM(nn.Module):
         return x_i
 
 
-def train_mnist(n_epoch: int = 100, device= "cuda:0" if torch.cuda.is_available() else "cpu") -> None:
+def train_mnist(n_epoch: int = 100, device= "cuda" if torch.cuda.is_available() else "cpu") -> None:
 
-    ddpm = DDPM(eps_model=DummyEpsModel(1), betas=(1e-4, 0.02), n_T=10)
+    ddpm = DDPM(eps_model=DummyEpsModel(1), betas=(1e-4, 0.02), n_T=100)
     ddpm.to(device)
 
     size = (1, 28, 28) 
