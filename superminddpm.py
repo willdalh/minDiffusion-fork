@@ -180,7 +180,7 @@ def train_mnist(n_epoch: int = 100, device= "cuda:0" if torch.cuda.is_available(
             save_image(grid, f"./contents/ddpm_sample_{i}.png")
 
             # save model
-            torch.save(ddpm.state_dict(), f"./ddpm_mnist.pth")
+            torch.save(ddpm.state_dict(), f"./contents/ddpm_mnist.pth")
 
 
 if __name__ == "__main__":
