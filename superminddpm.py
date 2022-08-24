@@ -27,6 +27,7 @@ def ddpm_schedules(beta1: float, beta2: float, T: int) -> Dict[str, torch.Tensor
     assert beta1 < beta2 < 1.0, "beta1 and beta2 must be in (0, 1)"
 
     beta_t = (beta2 - beta1) * torch.arange(0, T + 1, dtype=torch.float32) / T + beta1
+    print(beta_t)
     sqrt_beta_t = torch.sqrt(beta_t)
     alpha_t = 1 - beta_t
     log_alpha_t = torch.log(alpha_t)
@@ -138,7 +139,7 @@ class DDPM(nn.Module):
 
 def train_mnist(n_epoch: int = 100, device= "cuda:0" if torch.cuda.is_available() else "cpu") -> None:
 
-    ddpm = DDPM(eps_model=DummyEpsModel(1), betas=(1e-4, 0.02), n_T=100)
+    ddpm = DDPM(eps_model=DummyEpsModel(1), betas=(1e-4, 0.02), n_T=1000)
     ddpm.to(device)
 
     size = (1, 28, 28) 
