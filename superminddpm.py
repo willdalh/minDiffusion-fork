@@ -68,6 +68,8 @@ class DummyEpsModel(nn.Module):
             blk(n_channel, 64),
             blk(64, 128),
             blk(128, 256),
+            blk(256, 512),
+            blk(512, 256),
             blk(256, 128),
             blk(128, 64),
             nn.Conv2d(64, n_channel, 3, padding=1),
@@ -105,14 +107,17 @@ class DDPM(nn.Module):
         _ts = torch.randint(1, self.n_T, (x.shape[0],)).to(
             x.device
         )  # t ~ Uniform(0, n_T)
-        eps = torch.randn_like(x)  # eps ~ N(0, 1)
+        # print(_ts.shape)
+        # a = [i + 1 for i in range(x.shape[0])]
+        # a = [min(a[i], self.n_T - 1) for i in range(x.shape[0])]
+        # _ts = torch.tensor(a).to(x.device)
 
+        eps = torch.randn_like(x)  # eps ~ N(0, 1)
         x_t = (
             self.sqrtab[_ts, None, None, None] * x
             + self.sqrtmab[_ts, None, None, None] * eps
         )  # This is the x_t, which is sqrt(alphabar) x_0 + sqrt(1-alphabar) * eps
         # We should predict the "error term" from this x_t. Loss is what we return.
-
         return self.criterion(eps, self.eps_model(x_t, _ts / self.n_T))
 
     def sample(self, n_sample: int, size, device) -> torch.Tensor:
@@ -156,7 +161,7 @@ def train_mnist(n_epoch: int = 100, device= "cuda:0" if torch.cuda.is_available(
 
         pbar = tqdm(dataloader)
         loss_ema = None
-        for x, _ in pbar:
+        for i, (x, _) in enumerate(pbar):
             optim.zero_grad()
             x = x.to(device)
             loss = ddpm(x)
