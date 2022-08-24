@@ -161,7 +161,7 @@ def train_mnist(n_epoch: int = 100, device= "cuda:0" if torch.cuda.is_available(
 
         pbar = tqdm(dataloader)
         loss_ema = None
-        for i, (x, _) in enumerate(pbar):
+        for j, (x, _) in enumerate(pbar):
             optim.zero_grad()
             x = x.to(device)
             loss = ddpm(x)
