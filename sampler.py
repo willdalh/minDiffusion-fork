@@ -4,7 +4,7 @@ import torch
 def main():
     device = "cuda:0" if torch.cuda.is_available() else "cpu"
     model = DDPM(eps_model=DummyEpsModel(1), betas=(1e-4, 0.02), n_T=1000)
-    model.load_state_dict(torch.load("./contents/ddpm_mnist.pth", map_location=device))
+    model.load_state_dict(torch.load("./contents/ddpm_mnist.pth"))
     # model.to("cpu")
     model.eval()
     
