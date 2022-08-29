@@ -5,3 +5,4 @@ ddpm*.png
 .env
 job.slurm
 job_output.out
+testing.ipynb

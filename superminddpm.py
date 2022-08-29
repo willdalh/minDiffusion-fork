@@ -27,7 +27,6 @@ def ddpm_schedules(beta1: float, beta2: float, T: int) -> Dict[str, torch.Tensor
     assert beta1 < beta2 < 1.0, "beta1 and beta2 must be in (0, 1)"
 
     beta_t = (beta2 - beta1) * torch.arange(0, T + 1, dtype=torch.float32) / T + beta1
-    print(beta_t)
     sqrt_beta_t = torch.sqrt(beta_t)
     alpha_t = 1 - beta_t
     log_alpha_t = torch.log(alpha_t)
@@ -55,7 +54,6 @@ blk = lambda ic, oc: nn.Sequential(
     nn.BatchNorm2d(oc),
     nn.LeakyReLU(),
 )
-
 
 class DummyEpsModel(nn.Module):
     """
@@ -98,6 +96,7 @@ class DDPM(nn.Module):
 
         self.n_T = n_T
         self.criterion = criterion
+        print("Model created")
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """
@@ -121,10 +120,9 @@ class DDPM(nn.Module):
         # We should predict the "error term" from this x_t. Loss is what we return.
         return self.criterion(eps, self.eps_model(x_t, _ts / self.n_T))
 
-    def sample(self, n_sample: int, size, device) -> torch.Tensor:
-
+    def sample(self, n_sample: int, size, device, return_original_noise=False) -> torch.Tensor:
         x_i = torch.randn(n_sample, *size).to(device)  # x_T ~ N(0, 1)
-
+        original_noise = x_i.clone()
         # This samples accordingly to Algorithm 2. It is exactly the same logic.
         for i in range(self.n_T, 0, -1):
             z = torch.randn(n_sample, *size).to(device) if i > 1 else 0
@@ -133,7 +131,8 @@ class DDPM(nn.Module):
                 self.oneover_sqrta[i] * (x_i - eps * self.mab_over_sqrtmab[i])
                 + self.sqrt_beta_t[i] * z
             )
-
+        if return_original_noise:
+            return x_i, original_noise
         return x_i
 
 
