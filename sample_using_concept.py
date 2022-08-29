@@ -17,7 +17,7 @@ def main():
     n_samples = 40
     with torch.no_grad():
         for i in range(n_samples):
-            factor = (i/n_samples) + 0.5
+            factor = ((i/(n_samples*50))) + 0.99
             starting_noise = (factor * concept_vector).reshape(1, 28, 28)[:, None, ...]
             # print(starting_noise.shape)
             sampled = model.sample(1, (1, 28, 28), starting_noise=starting_noise, device=device)
