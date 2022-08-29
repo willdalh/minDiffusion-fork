@@ -4,3 +4,4 @@ contents/*
 ddpm*.png
 .env
 testing.ipynb
+concept_results/
