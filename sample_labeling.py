@@ -2,13 +2,13 @@ import torch
 import matplotlib.pyplot as plt
 def main():
     dataset = torch.load("./datasets/1000_samples.pth")
-    dataset = dataset[:100]
 
     n = dataset.shape[0]
     samples = dataset[:, 0][:, None, ...]
     original_noise = dataset[:, 1][:, None, ...]
 
     samples = samples + 0.5
+    samples = samples.clamp(0, 1)
     labels = []
     for i in range(n):
         fig, (ax1, ax2) = plt.subplots(1, 2)
@@ -17,10 +17,10 @@ def main():
         plt.show(block=False)
         plt.pause(0.1)
 
-        label = input("Label: ")
+        label = input(f"Label {i}/{n}: ")
         while not label.isdigit() or "." in label:
             print("Invalid label")
-            label = input("Label: ")
+            label = input(f"Label {i}/{n}: ")
         labels.append(int(label))
         plt.close(fig)
 
@@ -29,7 +29,7 @@ def main():
 
 def visualize_specifics(label):
     dataset = torch.load("./datasets/1000_samples.pth")
-    dataset = dataset[:100]
+    # dataset = dataset[:100]
 
     n = dataset.shape[0]
     samples = dataset[:, 0][:, None, ...]
@@ -42,5 +42,5 @@ def visualize_specifics(label):
 
 
 if __name__ == "__main__":
-    # main()
-    visualize_specifics(9)
+    main()
+    # visualize_specifics(9)

@@ -10,7 +10,7 @@ def main():
     model.eval()
 
     # Load concept vector
-    concept_vector = torch.load(f"./datasets/{100}_concept_vector.pth", map_location=device)
+    concept_vector = torch.load(f"./datasets/{1000}_concept_vector.pth", map_location=device)
     concept_vector = concept_vector.to(device)
     print(concept_vector.shape)
     

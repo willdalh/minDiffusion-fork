@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 def main():
     dataset = torch.load("./datasets/1000_samples.pth")
-    dataset = dataset[:100]
+    
     n = dataset.shape[0]
     samples = dataset[:, 0][:, None, ...]
     original_noise = dataset[:, 1][:, None, ...]
