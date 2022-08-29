@@ -15,10 +15,11 @@ def main():
     n = 10
     dataset = torch.Tensor(n, 2, 28, 28)
 
+    with torch.no_grad():
+        sampled, original_noise = model.sample(n, (1, 28, 28), device, return_original_noise=True)
+        dataset[:, 0] = sampled[:, 0]
+        dataset[:, 1] = original_noise[:, 0]
     # sampled, original_noise = torch.zeros(n, 1, 28, 28).to(device), torch.ones(n, 1, 28, 28).to(device)
-    sampled, original_noise = model.sample(n, (1, 28, 28), device, return_original_noise=True)
-    dataset[:, 0] = sampled[:, 0]
-    dataset[:, 1] = original_noise[:, 0]
 
     torch.save(dataset, f"./datasets/{n}_samples.pth")
     # dataset[:, 1]
