@@ -14,11 +14,12 @@ def main():
     concept_vector = concept_vector.to(device)
     print(concept_vector.shape)
     
-    n_samples = 40
+    noise = torch.randn(1, 1, 28, 28).to(device)
+    n_samples = 100
     with torch.no_grad():
         for i in range(n_samples):
-            factor = ((i/(n_samples*50))) + 0.99
-            starting_noise = (factor * concept_vector).reshape(1, 28, 28)[:, None, ...]
+            factor = ((i/(n_samples*100)))
+            starting_noise = noise + (factor * concept_vector).reshape(1, 28, 28)[:, None, ...]
             # print(starting_noise.shape)
             sampled = model.sample(1, (1, 28, 28), starting_noise=starting_noise, device=device)
             print(f"Finished {i}/{n_samples}")
