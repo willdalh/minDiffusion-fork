@@ -1,0 +1,51 @@
+we are running from this directory: /cluster/work/williad/minDiffusion-fork
+ the name of the job is: concept sampling
+Th job ID is 7626640
+The job was run on these nodes: idun-06-04
+Number of nodes: 1
+We are using 1 cores
+We are using 1 cores per node
+Total of 1 cores
+Starting script
+
+Defaulting to user installation because normal site-packages is not writeable
+Requirement already satisfied: torchvision in /cluster/home/williad/.local/lib/python3.8/site-packages (0.13.1)
+Requirement already satisfied: numpy in /cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages (from torchvision) (1.18.5)
+Requirement already satisfied: requests in /cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages (from torchvision) (2.24.0)
+Requirement already satisfied: pillow!=8.3.*,>=5.3.0 in /cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages (from torchvision) (7.2.0)
+Requirement already satisfied: typing-extensions in /cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages (from torchvision) (3.7.4.2)
+Requirement already satisfied: torch==1.12.1 in /cluster/home/williad/.local/lib/python3.8/site-packages (from torchvision) (1.12.1)
+Requirement already satisfied: chardet<4,>=3.0.2 in /cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages (from requests->torchvision) (3.0.4)
+Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,<1.26,>=1.21.1 in /cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages (from requests->torchvision) (1.25.9)
+Requirement already satisfied: certifi>=2017.4.17 in /cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages (from requests->torchvision) (2020.6.20)
+Requirement already satisfied: idna<3,>=2.5 in /cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages (from requests->torchvision) (2.10)
+Model created
+torch.Size([1, 784])
+Finished 0/10
+Traceback (most recent call last):
+  File "sample_using_concept.py", line 28, in <module>
+    main()
+  File "sample_using_concept.py", line 22, in main
+    sampled = model.sample(1, (1, 28, 28), starting_noise=starting_noise, device=device)
+  File "/cluster/work/williad/minDiffusion-fork/superminddpm.py", line 132, in sample
+    eps = self.eps_model(x_i, i / self.n_T)
+  File "/cluster/home/williad/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/cluster/work/williad/minDiffusion-fork/superminddpm.py", line 79, in forward
+    return self.conv(x)
+  File "/cluster/home/williad/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/cluster/home/williad/.local/lib/python3.8/site-packages/torch/nn/modules/container.py", line 139, in forward
+    input = module(input)
+  File "/cluster/home/williad/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/cluster/home/williad/.local/lib/python3.8/site-packages/torch/nn/modules/container.py", line 139, in forward
+    input = module(input)
+  File "/cluster/home/williad/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/cluster/home/williad/.local/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 168, in forward
+    return F.batch_norm(
+  File "/cluster/home/williad/.local/lib/python3.8/site-packages/torch/nn/functional.py", line 2438, in batch_norm
+    return torch.batch_norm(
+RuntimeError: CUDA out of memory. Tried to allocate 2.00 MiB (GPU 0; 15.90 GiB total capacity; 14.67 GiB already allocated; 3.81 MiB free; 15.14 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+Linux idun-06-04 4.18.0-348.el8.0.2.x86_64 #1 SMP Sun Nov 14 00:51:12 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
