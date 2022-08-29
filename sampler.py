@@ -12,7 +12,7 @@ def main():
     # sampled = model.sample(1, (1, 28, 28), device)
     # print(sampled.shape)
 
-    n = 100
+    n = 10
     dataset = torch.Tensor(n, 2, 28, 28)
 
     # sampled, original_noise = torch.zeros(n, 1, 28, 28).to(device), torch.ones(n, 1, 28, 28).to(device)
