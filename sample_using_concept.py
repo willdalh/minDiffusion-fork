@@ -14,7 +14,7 @@ def main():
     concept_vector = concept_vector.to(device)
     print(concept_vector.shape)
     
-    n_samples = 10
+    n_samples = 40
     with torch.no_grad():
         for i in range(n_samples):
             factor = (i/n_samples) + 0.5
