@@ -1,6 +1,6 @@
 data
 __pycache__
-*.pth
+contents/*
 ddpm*.png
 .env
 job.slurm

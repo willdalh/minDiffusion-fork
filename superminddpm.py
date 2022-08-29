@@ -120,8 +120,11 @@ class DDPM(nn.Module):
         # We should predict the "error term" from this x_t. Loss is what we return.
         return self.criterion(eps, self.eps_model(x_t, _ts / self.n_T))
 
-    def sample(self, n_sample: int, size, device, return_original_noise=False) -> torch.Tensor:
-        x_i = torch.randn(n_sample, *size).to(device)  # x_T ~ N(0, 1)
+    def sample(self, n_sample: int, size, device, return_original_noise=False, starting_noise=None) -> torch.Tensor:
+        if starting_noise is None:
+            x_i = torch.randn(n_sample, *size).to(device)  # x_T ~ N(0, 1)
+        else:
+            x_i = starting_noise.to(device)
         original_noise = x_i.clone()
         # This samples accordingly to Algorithm 2. It is exactly the same logic.
         for i in range(self.n_T, 0, -1):

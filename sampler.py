@@ -12,7 +12,7 @@ def main():
     # sampled = model.sample(1, (1, 28, 28), device)
     # print(sampled.shape)
 
-    n = 1000
+    n = 100
     dataset = torch.Tensor(n, 2, 28, 28)
 
     with torch.no_grad():
