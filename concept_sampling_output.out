@@ -1,6 +1,6 @@
 we are running from this directory: /cluster/work/williad/minDiffusion-fork
  the name of the job is: concept sampling
-Th job ID is 7626640
+Th job ID is 7627528
 The job was run on these nodes: idun-06-04
 Number of nodes: 1
 We are using 1 cores
@@ -10,42 +10,115 @@ Starting script
 
 Defaulting to user installation because normal site-packages is not writeable
 Requirement already satisfied: torchvision in /cluster/home/williad/.local/lib/python3.8/site-packages (0.13.1)
+Requirement already satisfied: pillow!=8.3.*,>=5.3.0 in /cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages (from torchvision) (7.2.0)
 Requirement already satisfied: numpy in /cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages (from torchvision) (1.18.5)
 Requirement already satisfied: requests in /cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages (from torchvision) (2.24.0)
-Requirement already satisfied: pillow!=8.3.*,>=5.3.0 in /cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages (from torchvision) (7.2.0)
-Requirement already satisfied: typing-extensions in /cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages (from torchvision) (3.7.4.2)
 Requirement already satisfied: torch==1.12.1 in /cluster/home/williad/.local/lib/python3.8/site-packages (from torchvision) (1.12.1)
+Requirement already satisfied: typing-extensions in /cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages (from torchvision) (3.7.4.2)
 Requirement already satisfied: chardet<4,>=3.0.2 in /cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages (from requests->torchvision) (3.0.4)
-Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,<1.26,>=1.21.1 in /cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages (from requests->torchvision) (1.25.9)
-Requirement already satisfied: certifi>=2017.4.17 in /cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages (from requests->torchvision) (2020.6.20)
 Requirement already satisfied: idna<3,>=2.5 in /cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages (from requests->torchvision) (2.10)
+Requirement already satisfied: certifi>=2017.4.17 in /cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages (from requests->torchvision) (2020.6.20)
+Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,<1.26,>=1.21.1 in /cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages (from requests->torchvision) (1.25.9)
 Model created
 torch.Size([1, 784])
-Finished 0/10
-Traceback (most recent call last):
-  File "sample_using_concept.py", line 28, in <module>
-    main()
-  File "sample_using_concept.py", line 22, in main
-    sampled = model.sample(1, (1, 28, 28), starting_noise=starting_noise, device=device)
-  File "/cluster/work/williad/minDiffusion-fork/superminddpm.py", line 132, in sample
-    eps = self.eps_model(x_i, i / self.n_T)
-  File "/cluster/home/williad/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1130, in _call_impl
-    return forward_call(*input, **kwargs)
-  File "/cluster/work/williad/minDiffusion-fork/superminddpm.py", line 79, in forward
-    return self.conv(x)
-  File "/cluster/home/williad/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1130, in _call_impl
-    return forward_call(*input, **kwargs)
-  File "/cluster/home/williad/.local/lib/python3.8/site-packages/torch/nn/modules/container.py", line 139, in forward
-    input = module(input)
-  File "/cluster/home/williad/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1130, in _call_impl
-    return forward_call(*input, **kwargs)
-  File "/cluster/home/williad/.local/lib/python3.8/site-packages/torch/nn/modules/container.py", line 139, in forward
-    input = module(input)
-  File "/cluster/home/williad/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1130, in _call_impl
-    return forward_call(*input, **kwargs)
-  File "/cluster/home/williad/.local/lib/python3.8/site-packages/torch/nn/modules/batchnorm.py", line 168, in forward
-    return F.batch_norm(
-  File "/cluster/home/williad/.local/lib/python3.8/site-packages/torch/nn/functional.py", line 2438, in batch_norm
-    return torch.batch_norm(
-RuntimeError: CUDA out of memory. Tried to allocate 2.00 MiB (GPU 0; 15.90 GiB total capacity; 14.67 GiB already allocated; 3.81 MiB free; 15.14 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+Finished 0/100
+Finished 1/100
+Finished 2/100
+Finished 3/100
+Finished 4/100
+Finished 5/100
+Finished 6/100
+Finished 7/100
+Finished 8/100
+Finished 9/100
+Finished 10/100
+Finished 11/100
+Finished 12/100
+Finished 13/100
+Finished 14/100
+Finished 15/100
+Finished 16/100
+Finished 17/100
+Finished 18/100
+Finished 19/100
+Finished 20/100
+Finished 21/100
+Finished 22/100
+Finished 23/100
+Finished 24/100
+Finished 25/100
+Finished 26/100
+Finished 27/100
+Finished 28/100
+Finished 29/100
+Finished 30/100
+Finished 31/100
+Finished 32/100
+Finished 33/100
+Finished 34/100
+Finished 35/100
+Finished 36/100
+Finished 37/100
+Finished 38/100
+Finished 39/100
+Finished 40/100
+Finished 41/100
+Finished 42/100
+Finished 43/100
+Finished 44/100
+Finished 45/100
+Finished 46/100
+Finished 47/100
+Finished 48/100
+Finished 49/100
+Finished 50/100
+Finished 51/100
+Finished 52/100
+Finished 53/100
+Finished 54/100
+Finished 55/100
+Finished 56/100
+Finished 57/100
+Finished 58/100
+Finished 59/100
+Finished 60/100
+Finished 61/100
+Finished 62/100
+Finished 63/100
+Finished 64/100
+Finished 65/100
+Finished 66/100
+Finished 67/100
+Finished 68/100
+Finished 69/100
+Finished 70/100
+Finished 71/100
+Finished 72/100
+Finished 73/100
+Finished 74/100
+Finished 75/100
+Finished 76/100
+Finished 77/100
+Finished 78/100
+Finished 79/100
+Finished 80/100
+Finished 81/100
+Finished 82/100
+Finished 83/100
+Finished 84/100
+Finished 85/100
+Finished 86/100
+Finished 87/100
+Finished 88/100
+Finished 89/100
+Finished 90/100
+Finished 91/100
+Finished 92/100
+Finished 93/100
+Finished 94/100
+Finished 95/100
+Finished 96/100
+Finished 97/100
+Finished 98/100
+Finished 99/100
 Linux idun-06-04 4.18.0-348.el8.0.2.x86_64 #1 SMP Sun Nov 14 00:51:12 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
