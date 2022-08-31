@@ -120,7 +120,7 @@ class DDPM(nn.Module):
         # We should predict the "error term" from this x_t. Loss is what we return.
         return self.criterion(eps, self.eps_model(x_t, _ts / self.n_T))
 
-    def sample(self, n_sample: int, size, device, return_original_noise=False, starting_noise=None) -> torch.Tensor:
+    def sample(self, n_sample: int, size, device, return_original_noise=False, starting_noise=None, return_at_step=-1) -> torch.Tensor:
         if starting_noise is None:
             x_i = torch.randn(n_sample, *size).to(device)  # x_T ~ N(0, 1)
         else:
@@ -134,6 +134,8 @@ class DDPM(nn.Module):
                 self.oneover_sqrta[i] * (x_i - eps * self.mab_over_sqrtmab[i])
                 + self.sqrt_beta_t[i] * z
             )
+            if return_at_step == i:
+                return x_i
         if return_original_noise:
             return x_i, original_noise
         return x_i
