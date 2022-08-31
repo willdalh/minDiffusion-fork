@@ -3,5 +3,4 @@ __pycache__
 contents/*
 ddpm*.png
 .env
-testing.ipynb
 concept_results/
