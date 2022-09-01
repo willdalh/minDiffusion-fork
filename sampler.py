@@ -12,20 +12,23 @@ def main():
     # sampled = model.sample(1, (1, 28, 28), device)
     # print(sampled.shape)
 
-    n = 900
+    n = 1
     dataset = torch.Tensor(n, 2, 28, 28)
-    seed = 307
-    torch.manual_seed(seed)
+    seeds = torch.randint(0, 10000000, (n,), dtype=torch.long)
+
     with torch.no_grad():
         for i in range(n):
+            torch.manual_seed(seeds[i])
             sampled, original_noise = model.sample(1, (1, 28, 28), device, return_original_noise=True)
             dataset[i, 0] = sampled[0, 0]
             dataset[i, 1] = original_noise[0, 0]
+            if i % 100 == 0:
+                print(f"Currently at {i} of {n}")
         # dataset[:, 0] = sampled[:, 0]
         # dataset[:, 1] = original_noise[:, 0]
 
     torch.save(dataset, f"./datasets/{n}_samples.pth")
-    torch.save(torch.LongTensor([seed]), f"./datasets/{n}_seed.pth")
+    torch.save(seeds, f"./datasets/{n}_seeds.pth")
     # dataset[:, 1]
 
     # print("dataset shape", dataset.shape)
