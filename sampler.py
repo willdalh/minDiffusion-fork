@@ -12,7 +12,7 @@ def main():
     # sampled = model.sample(1, (1, 28, 28), device)
     # print(sampled.shape)
 
-    n = 1
+    n = 900
     dataset = torch.Tensor(n, 2, 28, 28)
     seeds = torch.randint(0, 10000000, (n,), dtype=torch.long)
 
@@ -22,7 +22,7 @@ def main():
             sampled, original_noise = model.sample(1, (1, 28, 28), device, return_original_noise=True)
             dataset[i, 0] = sampled[0, 0]
             dataset[i, 1] = original_noise[0, 0]
-            if i % 100 == 0:
+            if i % 40 == 0:
                 print(f"Currently at {i} of {n}")
         # dataset[:, 0] = sampled[:, 0]
         # dataset[:, 1] = original_noise[:, 0]
