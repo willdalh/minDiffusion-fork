@@ -57,7 +57,7 @@ def main():
         download=True,
         transform=tf,
     )
-    train_dataloader = DataLoader(train_dataset, batch_size=128, shuffle=True, num_workers=1)
+    train_dataloader = DataLoader(train_dataset, batch_size=128, shuffle=True, num_workers=8)
 
     test_dataset = datasets.MNIST(
             "./data",
@@ -65,10 +65,10 @@ def main():
             download=True,
             transform=tf,
         )
-    test_dataloader = DataLoader(test_dataset, batch_size=128, shuffle=True, num_workers=1)
+    test_dataloader = DataLoader(test_dataset, batch_size=128, shuffle=True, num_workers=8)
 
     # Train
-    epochs = 1000
+    epochs = 800
     for epoch in range(epochs):
         model.train()
         for i, (x, y) in enumerate(train_dataloader):
