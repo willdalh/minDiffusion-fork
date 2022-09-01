@@ -31,6 +31,17 @@ class MNISTClassifier(nn.Module):
     def loss(self, x, y):
         return F.cross_entropy(self.logits(x), y)
 
+def get_curr_accuracy(model, data_loader, device):
+    model.eval()
+    with torch.no_grad():
+        correct = 0
+        for i, (x, y) in enumerate(data_loader):
+            x = x.to(device)
+            y = y.to(device)
+            pred = model(x).argmax(dim=1)
+            correct += (pred == y).sum().item()
+        return correct / len(data_loader)
+
 def main():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = MNISTClassifier(device)
@@ -40,19 +51,27 @@ def main():
     tf = transforms.Compose(
         [transforms.ToTensor(), transforms.Normalize((0.5,), (1.0))]
     )
-    dataset = datasets.MNIST(
+    train_dataset = datasets.MNIST(
         "./data",
         train=True,
         download=True,
         transform=tf,
     )
-    dataloader = DataLoader(dataset, batch_size=128, shuffle=True, num_workers=1)
+    train_dataloader = DataLoader(train_dataset, batch_size=128, shuffle=True, num_workers=1)
+
+    test_dataset = datasets.MNIST(
+            "./data",
+            train=False,
+            download=True,
+            transform=tf,
+        )
+    test_dataloader = DataLoader(test_dataset, batch_size=128, shuffle=True, num_workers=1)
 
     # Train
     epochs = 1000
     for epoch in range(epochs):
         model.train()
-        for i, (x, y) in enumerate(dataloader):
+        for i, (x, y) in enumerate(train_dataloader):
             x = x.to(device)
             y = y.to(device)
             optimizer.zero_grad()
@@ -60,24 +79,15 @@ def main():
             loss.backward()
             optimizer.step()
         print(f"Epoch {epoch} done")
-    
+
+        if epoch % 50 == 0:
+            torch.save(model.state_dict(), "./saved_models/mnist_classifier.pth")
+            accuracy = get_curr_accuracy(model, test_dataloader, device)
+            print(f"Accuracy at epoch {epoch}: {accuracy}")
+
     # Test
-    model.eval()
-    with torch.no_grad():
-        dataset = datasets.MNIST(
-            "./data",
-            train=False,
-            download=True,
-            transform=tf,
-        )
-        dataloader = DataLoader(dataset, batch_size=128, shuffle=True, num_workers=1)
-        correct = 0
-        for i, (x, y) in enumerate(dataloader):
-            x = x.to(device)
-            y = y.to(device)
-            pred = model(x).argmax(dim=1)
-            correct += (pred == y).sum().item()
-        print(f"Accuracy: {correct / len(dataset)}")
+    accuracy = get_curr_accuracy(model, test_dataloader, device)
+    print(f"Accuracy: {accuracy}")
 
     # Save model
     torch.save(model.state_dict(), "./saved_models/mnist_classifier.pth")
