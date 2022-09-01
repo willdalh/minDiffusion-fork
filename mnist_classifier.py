@@ -40,7 +40,7 @@ def get_curr_accuracy(model, data_loader, device):
             y = y.to(device)
             pred = model(x).argmax(dim=1)
             correct += (pred == y).sum().item()
-        return correct / len(data_loader)
+        return correct / len(data_loader.dataset)
 
 def main():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
