@@ -6,8 +6,8 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --mem=12000
-#SBATCH --job-name="sampling mindiffusion"
-#SBATCH --output=sampling_output.out
+#SBATCH --job-name="classifier"
+#SBATCH --output=mnist_classifier_output.out
 #SBATCH --mail-user=williad@stud.ntnu.no
 #SBATCH --mail-type=ALL
 
@@ -25,5 +25,6 @@ echo "Starting script"
 echo ""
 module purge
 module load Anaconda3/2020.07
-python sampler.py
+pip install torchvision
+python mnist_classifier.py
 uname -a

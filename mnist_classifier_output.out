@@ -1,0 +1,111 @@
+we are running from this directory: /cluster/work/williad/minDiffusion-fork
+ the name of the job is: classifier
+Th job ID is 7660303
+The job was run on these nodes: idun-06-07
+Number of nodes: 1
+We are using 1 cores
+We are using 1 cores per node
+Total of 1 cores
+Starting script
+
+Defaulting to user installation because normal site-packages is not writeable
+Requirement already satisfied: torchvision in /cluster/home/williad/.local/lib/python3.8/site-packages (0.13.1)
+Requirement already satisfied: typing-extensions in /cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages (from torchvision) (3.7.4.2)
+Requirement already satisfied: requests in /cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages (from torchvision) (2.24.0)
+Requirement already satisfied: pillow!=8.3.*,>=5.3.0 in /cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages (from torchvision) (7.2.0)
+Requirement already satisfied: numpy in /cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages (from torchvision) (1.18.5)
+Requirement already satisfied: torch==1.12.1 in /cluster/home/williad/.local/lib/python3.8/site-packages (from torchvision) (1.12.1)
+Requirement already satisfied: certifi>=2017.4.17 in /cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages (from requests->torchvision) (2020.6.20)
+Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,<1.26,>=1.21.1 in /cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages (from requests->torchvision) (1.25.9)
+Requirement already satisfied: idna<3,>=2.5 in /cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages (from requests->torchvision) (2.10)
+Requirement already satisfied: chardet<4,>=3.0.2 in /cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages (from requests->torchvision) (3.0.4)
+Epoch 0 done
+Accuracy at epoch 0: 124.51898734177215
+Epoch 1 done
+Epoch 2 done
+Epoch 3 done
+Epoch 4 done
+Epoch 5 done
+Epoch 6 done
+Epoch 7 done
+Epoch 8 done
+Epoch 9 done
+Epoch 10 done
+Epoch 11 done
+Epoch 12 done
+Epoch 13 done
+Epoch 14 done
+Epoch 15 done
+Epoch 16 done
+Epoch 17 done
+Epoch 18 done
+Epoch 19 done
+Epoch 20 done
+Epoch 21 done
+Epoch 22 done
+Epoch 23 done
+Epoch 24 done
+Epoch 25 done
+Epoch 26 done
+Epoch 27 done
+Epoch 28 done
+Epoch 29 done
+Epoch 30 done
+Epoch 31 done
+Epoch 32 done
+Epoch 33 done
+Epoch 34 done
+Epoch 35 done
+Epoch 36 done
+Epoch 37 done
+Epoch 38 done
+Epoch 39 done
+Epoch 40 done
+Epoch 41 done
+Epoch 42 done
+Epoch 43 done
+Epoch 44 done
+Epoch 45 done
+Epoch 46 done
+Epoch 47 done
+Epoch 48 done
+Epoch 49 done
+Epoch 50 done
+Accuracy at epoch 50: 125.68354430379746
+Epoch 51 done
+Epoch 52 done
+Epoch 53 done
+Epoch 54 done
+Epoch 55 done
+Epoch 56 done
+Epoch 57 done
+Epoch 58 done
+Epoch 59 done
+Epoch 60 done
+Epoch 61 done
+Epoch 62 done
+Epoch 63 done
+Epoch 64 done
+Epoch 65 done
+Epoch 66 done
+Epoch 67 done
+Epoch 68 done
+Epoch 69 done
+Epoch 70 done
+Epoch 71 done
+Epoch 72 done
+Epoch 73 done
+Epoch 74 done
+Epoch 75 done
+Epoch 76 done
+Epoch 77 done
+Epoch 78 done
+Epoch 79 done
+Epoch 80 done
+Epoch 81 done
+Epoch 82 done
+Epoch 83 done
+Epoch 84 done
+Epoch 85 done
+Epoch 86 done
+slurmstepd: error: *** JOB 7660303 ON idun-06-07 CANCELLED AT 2022-09-01T15:50:46 ***
