@@ -49,7 +49,7 @@ def main():
     dataloader = DataLoader(dataset, batch_size=128, shuffle=True, num_workers=1)
 
     # Train
-    epochs = 1
+    epochs = 1000
     for epoch in range(epochs):
         model.train()
         for i, (x, y) in enumerate(dataloader):
