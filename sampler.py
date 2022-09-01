@@ -23,7 +23,6 @@ def main():
             dataset[i, 1] = original_noise[0, 0]
         # dataset[:, 0] = sampled[:, 0]
         # dataset[:, 1] = original_noise[:, 0]
-    # sampled, original_noise = torch.zeros(n, 1, 28, 28).to(device), torch.ones(n, 1, 28, 28).to(device)
 
     torch.save(dataset, f"./datasets/{n}_samples.pth")
     torch.save(torch.LongTensor([seed]), f"./datasets/{n}_seed.pth")
