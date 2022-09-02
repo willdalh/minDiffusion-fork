@@ -13,7 +13,7 @@ def main():
     # print(sampled.shape)
 
     n = 980
-    dataset = torch.randn(n, 2, 28, 28)
+    dataset = torch.Tensor(n, 2, 28, 28)
     # seeds = torch.randint(0, 10000000, (n,), dtype=torch.long)
 
     seed = torch.LongTensor([980])
