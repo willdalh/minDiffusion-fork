@@ -93,17 +93,17 @@ def main():
         accuracies.append(accuracy)
         print(f"Accuracy: {accuracy}")
 
-        # fig, ax = plt.subplots(1, 6, figsize=(20, 4))
-        # for j in range(len(ax)):
-        #     # ax[i].imshow(sample_test[i].reshape(28, 28), cmap="gray")
-        #     # print(x_test[i].mean(dim=0, keepdim=True).shape)
-        #     ax[j].imshow(x_test[j].mean(dim=0), cmap="gray")
-        #     ax[j].set_title(f"{y_test[j]}")
+        fig, ax = plt.subplots(1, 6, figsize=(20, 4))
+        for j in range(len(ax)):
+            # ax[i].imshow(sample_test[i].reshape(28, 28), cmap="gray")
+            # print(x_test[i].mean(dim=0, keepdim=True).shape)
+            ax[j].imshow(x_test[j].mean(dim=0), cmap="gray")
+            ax[j].set_title(f"{y_test[j]}")
 
-        #     curr_sample = x_test[j][None, ...]
-        #     predicted = clf.predict(curr_sample.reshape(1, -1))[0]
-        #     ax[j].set_title(f"{predicted}")
-
+            curr_sample = x_test[j][None, ...]
+            predicted = clf.predict(curr_sample.reshape(1, -1))[0]
+            ax[j].set_title(f"{predicted}")
+        plt.savefig(f"tcav_results/{label_of_interest}_{i}_samples.png")
         # plt.show()
     fig, ax = plt.subplots(1, 1, figsize=(14, 4))
     ax.plot(accuracies)
