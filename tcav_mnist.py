@@ -107,13 +107,12 @@ def main():
             ax[j].set_title(f"{y_test[j]}")
 
             curr_sample = x_test[j][None, ...]
-            predicted = clf.predict(curr_sample.reshape(1, -1))[0]
+            predicted = clf.predict(curr_sample.reshape(1, -1).cpu())[0]
             ax[j].set_title(f"{predicted}")
         plt.savefig(f"tcav_results/activations_{label_of_interest}/layer_{i}_samples.png")
         # im = Image.frombytes("RGB", fig.canvas.get_width_height(), fig.canvas.tostring_rgb())
         images.append(Image.open(f"tcav_results/activations_{label_of_interest}/layer_{i}_samples.png"))
-        # delete image
-        # os.remove(f"tcav_results/{label_of_interest}_{i}_samples.png")
+ 
 
 
 
