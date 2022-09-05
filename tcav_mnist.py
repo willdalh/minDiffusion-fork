@@ -1,3 +1,4 @@
+from genericpath import isdir
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -6,6 +7,8 @@ from torch.utils.data import DataLoader
 from collections import Counter
 from superminddpm import DDPM, DummyEpsModel
 import matplotlib.pyplot as plt
+import os
+from PIL import Image
 
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
@@ -36,7 +39,7 @@ def main():
         if i == n_batches_to_save -1:
             break
     
-    label_of_interest = 5
+    label_of_interest = 3
     
     # Create dataset where half the samples are the label of interest
     n_label_of_interest = (mnist_labels == label_of_interest).cpu().sum().item()
@@ -68,10 +71,12 @@ def main():
             whole_pipeline.append(m)
     print("The whole pipeline:")
     print([e.__class__.__name__ for e in whole_pipeline], "\n")
-
     accuracies = []
-
-    for i in range(3, len(whole_pipeline), 3):
+    images = []
+    # check if dir exists
+    if not isdir(f"./tcav_results/activations_{label_of_interest}"):
+        os.mkdir(f"./tcav_results/activations_{label_of_interest}")
+    for i in range(1, len(whole_pipeline) + 1):
         cutoff_index = i #len(whole_pipeline) 
         pipeline = whole_pipeline[:cutoff_index]
         submodel = nn.Sequential(*pipeline)
@@ -93,7 +98,8 @@ def main():
         accuracies.append(accuracy)
         print(f"Accuracy: {accuracy}")
 
-        fig, ax = plt.subplots(1, 6, figsize=(20, 4))
+        fig, ax = plt.subplots(1, 9, figsize=(20, 4))
+        fig.suptitle(f"Classified as {label_of_interest}? (Layer #{i}: {name_arr[i-1]})", fontsize=48)
         for j in range(len(ax)):
             # ax[i].imshow(sample_test[i].reshape(28, 28), cmap="gray")
             # print(x_test[i].mean(dim=0, keepdim=True).shape)
@@ -103,14 +109,28 @@ def main():
             curr_sample = x_test[j][None, ...]
             predicted = clf.predict(curr_sample.reshape(1, -1))[0]
             ax[j].set_title(f"{predicted}")
-        plt.savefig(f"tcav_results/{label_of_interest}_{i}_samples.png")
-        # plt.show()
+        plt.savefig(f"tcav_results/activations_{label_of_interest}/layer_{i}_samples.png")
+        # im = Image.frombytes("RGB", fig.canvas.get_width_height(), fig.canvas.tostring_rgb())
+        images.append(Image.open(f"tcav_results/activations_{label_of_interest}/layer_{i}_samples.png"))
+        # delete image
+        # os.remove(f"tcav_results/{label_of_interest}_{i}_samples.png")
+
+
+
+    # Concatenate all the images
+    grid = Image.new('RGB', (images[0].width, images[0].height * len(images)))
+    for i in range(len(images)):
+        grid.paste(images[i], (0, i * images[i].height))
+    grid.save(f"tcav_results/{label_of_interest}_grid_all_activations.png")
+
+    
     fig, ax = plt.subplots(1, 1, figsize=(14, 4))
     ax.plot(accuracies)
     print(accuracies)
     # ax.set_xticks([i for i in range(0, len(accuracies), 3)])
-    ax.set_xticklabels([f"Conv-Norm-LReLU" for i in range(0, len(accuracies)*3, 3)])
+    ax.set_xticklabels([f"{name_arr[i][0]}-#{i}" for i in range(len(name_arr))])
     ax.set_xticks([i for i in range(0, len(accuracies), 1)])
+    ax.text(0.05, 0.95, f"C=Conv2d\nB=BatchNorm2d\nL=LeakyReLU", transform=ax.transAxes, fontsize=12, verticalalignment='top')
     # ax.set_xticklabels([f"hei" for i in range(0, len(accuracies)*3, 3)])
     # Save plot to file
     plt.savefig(f"./tcav_results/mnist_concept_accuracy_{label_of_interest}.png")
