@@ -36,7 +36,7 @@ def main():
         if i == n_batches_to_save -1:
             break
     
-    label_of_interest = 3
+    label_of_interest = 5
     
     # Create dataset where half the samples are the label of interest
     n_label_of_interest = (mnist_labels == label_of_interest).sum().item()
