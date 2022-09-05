@@ -39,7 +39,7 @@ def main():
     label_of_interest = 5
     
     # Create dataset where half the samples are the label of interest
-    n_label_of_interest = (mnist_labels == label_of_interest).sum().item()
+    n_label_of_interest = (mnist_labels == label_of_interest).cpu().sum().item()
     final_samples = torch.Tensor(n_label_of_interest * 2, 1, 28, 28).to(device)
     final_labels = torch.Tensor(n_label_of_interest * 2).to(device)
     final_samples[:n_label_of_interest] = mnist_samples[mnist_labels == label_of_interest]
