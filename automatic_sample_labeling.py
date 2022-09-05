@@ -17,7 +17,6 @@ def main():
     labels = torch.zeros(n, dtype=torch.long, device=device)
     with torch.no_grad():
         labels = torch.argmax(model(samples), dim=1)
-    print(labels)
 
     torch.save(labels, f"./datasets/{n}_labels.pth")
 
