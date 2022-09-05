@@ -88,8 +88,8 @@ def main():
         test_size = 0.25
         sample_train, sample_test, x_train, x_test, y_train, y_test = train_test_split(mnist_samples, x, y, test_size=test_size)
         clf = LogisticRegression()
-        clf.fit(x_train.reshape(x_train.shape[0], -1), y_train)
-        accuracy = clf.score(x_test.reshape(x_test.shape[0], -1), y_test)
+        clf.fit(x_train.reshape(x_train.shape[0], -1).cpu(), y_train.cpu())
+        accuracy = clf.score(x_test.reshape(x_test.shape[0], -1).cpu(), y_test.cpu())
         accuracies.append(accuracy)
         print(f"Accuracy: {accuracy}")
 
