@@ -1,0 +1,235 @@
+we are running from this directory: /cluster/work/williad/minDiffusion-fork
+ the name of the job is: tcav mnist
+Th job ID is 8126599
+The job was run on these nodes: idun-04-01
+Number of nodes: 1
+We are using 1 cores
+We are using 1 cores per node
+Total of 1 cores
+Starting script
+
+/cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages/sklearn/linear_model/_logistic.py:762: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+/cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages/sklearn/linear_model/_logistic.py:762: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+/cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages/sklearn/linear_model/_logistic.py:762: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+/cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages/sklearn/linear_model/_logistic.py:762: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+/cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages/sklearn/linear_model/_logistic.py:762: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+/cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages/sklearn/linear_model/_logistic.py:762: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+/cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages/sklearn/linear_model/_logistic.py:762: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+/cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages/sklearn/linear_model/_logistic.py:762: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+/cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages/sklearn/linear_model/_logistic.py:762: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+/cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages/sklearn/linear_model/_logistic.py:762: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+/cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages/sklearn/linear_model/_logistic.py:762: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+/cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages/sklearn/linear_model/_logistic.py:762: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+/cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages/sklearn/linear_model/_logistic.py:762: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+/cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages/sklearn/linear_model/_logistic.py:762: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+/cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages/sklearn/linear_model/_logistic.py:762: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+/cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages/sklearn/linear_model/_logistic.py:762: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+/cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages/sklearn/linear_model/_logistic.py:762: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+/cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages/sklearn/linear_model/_logistic.py:762: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+/cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages/sklearn/linear_model/_logistic.py:762: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+/cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages/sklearn/linear_model/_logistic.py:762: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+/cluster/apps/eb/software/Anaconda3/2020.07/lib/python3.8/site-packages/sklearn/linear_model/_logistic.py:762: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+tcav_mnist.py:101: RuntimeWarning: More than 20 figures have been opened. Figures created through the pyplot interface (`matplotlib.pyplot.figure`) are retained until explicitly closed and may consume too much memory. (To control this warning, see the rcParam `figure.max_open_warning`).
+  fig, ax = plt.subplots(1, 9, figsize=(20, 4))
+tcav_mnist.py:101: RuntimeWarning: More than 20 figures have been opened. Figures created through the pyplot interface (`matplotlib.pyplot.figure`) are retained until explicitly closed and may consume too much memory. (To control this warning, see the rcParam `figure.max_open_warning`).
+  fig, ax = plt.subplots(1, 9, figsize=(20, 4))
+tcav_mnist.py:126: RuntimeWarning: More than 20 figures have been opened. Figures created through the pyplot interface (`matplotlib.pyplot.figure`) are retained until explicitly closed and may consume too much memory. (To control this warning, see the rcParam `figure.max_open_warning`).
+  fig, ax = plt.subplots(1, 1, figsize=(14, 4))
+Final number of samples: 1660
+Model created
+The whole pipeline:
+['Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d'] 
+
+Pipeline: ['Conv2d']
+Accuracy: 0.9325301204819277
+Pipeline: ['Conv2d', 'BatchNorm2d']
+Accuracy: 0.9325301204819277
+Pipeline: ['Conv2d', 'BatchNorm2d', 'LeakyReLU']
+Accuracy: 0.9566265060240964
+Pipeline: ['Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d']
+Accuracy: 0.963855421686747
+Pipeline: ['Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d']
+Accuracy: 0.9734939759036144
+Pipeline: ['Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU']
+Accuracy: 0.9686746987951808
+Pipeline: ['Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d']
+Accuracy: 0.9662650602409638
+Pipeline: ['Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d']
+Accuracy: 0.9783132530120482
+Pipeline: ['Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU']
+Accuracy: 0.980722891566265
+Pipeline: ['Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d']
+Accuracy: 0.9710843373493976
+Pipeline: ['Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d']
+Accuracy: 0.983132530120482
+Pipeline: ['Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU']
+Accuracy: 0.9951807228915662
+Pipeline: ['Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d']
+Accuracy: 0.9710843373493976
+Pipeline: ['Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d']
+Accuracy: 0.9662650602409638
+Pipeline: ['Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU']
+Accuracy: 0.983132530120482
+Pipeline: ['Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d']
+Accuracy: 0.9518072289156626
+Pipeline: ['Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d']
+Accuracy: 0.9590361445783132
+Pipeline: ['Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU']
+Accuracy: 0.9686746987951808
+Pipeline: ['Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d']
+Accuracy: 0.9662650602409638
+Pipeline: ['Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d']
+Accuracy: 0.9518072289156626
+Pipeline: ['Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU']
+Accuracy: 0.9566265060240964
+Pipeline: ['Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d', 'BatchNorm2d', 'LeakyReLU', 'Conv2d']
+Accuracy: 0.8289156626506025
+[0.9325301204819277, 0.9325301204819277, 0.9566265060240964, 0.963855421686747, 0.9734939759036144, 0.9686746987951808, 0.9662650602409638, 0.9783132530120482, 0.980722891566265, 0.9710843373493976, 0.983132530120482, 0.9951807228915662, 0.9710843373493976, 0.9662650602409638, 0.983132530120482, 0.9518072289156626, 0.9590361445783132, 0.9686746987951808, 0.9662650602409638, 0.9518072289156626, 0.9566265060240964, 0.8289156626506025]
+Linux idun-04-01 4.18.0-348.el8.0.2.x86_64 #1 SMP Sun Nov 14 00:51:12 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
