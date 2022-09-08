@@ -6,9 +6,9 @@ def main():
     model.load_state_dict(torch.load("./saved_models/mnist_classifier.pth", map_location=device))
 
     
-    dataset = torch.load("./datasets/980_samples.pth")
+    dataset = torch.load("./datasets/980_samples.pth", map_location=device)
     dataset.to(device)
-    seed = torch.load("./datasets/980_seed.pth").to(device)
+    seed = torch.load("./datasets/980_seed.pth", map_location=device).to(device)
     torch.manual_seed(seed)
     samples = dataset[:, 0][:, None, ...]
     original_noise = dataset[:, 1][:, None, ...]
