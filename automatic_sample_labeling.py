@@ -1,14 +1,14 @@
 import torch
 from mnist_classifier import MNISTClassifier
 def main():
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     model = MNISTClassifier(device)
     model.load_state_dict(torch.load("./saved_models/mnist_classifier.pth", map_location=device))
 
     
     dataset = torch.load("./datasets/980_samples.pth")
     dataset.to(device)
-    seed = torch.load("./datasets/980_seed.pth")
+    seed = torch.load("./datasets/980_seed.pth").to(device)
     torch.manual_seed(seed)
     samples = dataset[:, 0][:, None, ...]
     original_noise = dataset[:, 1][:, None, ...]

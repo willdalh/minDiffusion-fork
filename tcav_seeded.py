@@ -22,15 +22,13 @@ def main():
     model.eval()
 
     # Load samples, labels and seeds
-    dataset = torch.load("./datasets/980_samples.pth")
-    seed = torch.load("./datasets/980_seed.pth")
+    dataset = torch.load("./datasets/980_samples.pth").to(device)
+    seed = torch.load("./datasets/980_seed.pth").to(device)
 
     n = dataset.shape[0]
     samples = dataset[:, 0][:, None, ...]
     original_noise = dataset[:, 1][:, None, ...]
-    labels = torch.load()
-    print(dataset.shape)
-    quit()
+    labels = torch.load("./datasets/980_labels.pth").to(device)
 
     label_of_interest = 2
 
@@ -48,10 +46,19 @@ def main():
     name_arr = [e.__class__.__name__ for e in pipeline]
     print(f"Pipeline: {name_arr}")  
 
+    torch.manual_seed(seed)
+    _ = torch.randn(n, *(1, 28, 28)).to(device) # Continue RNG state
+    with torch.no_grad():
+        x = submodel(original_noise)
+    
+    y = labels == label_of_interest
 
-
-    # with torch.no_grad():
-    #     x = submodel(mnist_samples)
+    test_size = 0.25
+    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=test_size)
+    clf = LogisticRegression()
+    clf.fit(x_train.reshape(x_train.shape[0], -1).cpu(), y_train.cpu())
+    accuracy = clf.score(x_test.reshape(x_test.shape[0], -1).cpu(), y_test.cpu())
+    print(f"Accuracy: {accuracy}")
 
 
 if __name__ == "__main__":
