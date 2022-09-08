@@ -6,7 +6,7 @@ def main():
     model.load_state_dict(torch.load("./saved_models/mnist_classifier.pth", map_location=device))
 
     
-    dataset = torch.load("./datasets/900_samples.pth")
+    dataset = torch.load("./datasets/980_samples.pth")
     dataset.to(device)
     seed = torch.load("./datasets/980_seed.pth")
     torch.manual_seed(seed)
