@@ -1,25 +1,11 @@
 we are running from this directory: /cluster/work/williad/minDiffusion-fork
  the name of the job is: labeling
-Th job ID is 8569201
-The job was run on these nodes: idun-07-02
+Th job ID is 8575749
+The job was run on these nodes: idun-04-01
 Number of nodes: 1
 We are using 1 cores
 We are using 1 cores per node
 Total of 1 cores
 Starting script
 
-/cluster/home/williad/.local/lib/python3.8/site-packages/torch/cuda/__init__.py:146: UserWarning: 
-NVIDIA A100-PCIE-40GB with CUDA capability sm_80 is not compatible with the current PyTorch installation.
-The current PyTorch install supports CUDA capabilities sm_37 sm_50 sm_60 sm_70.
-If you want to use the NVIDIA A100-PCIE-40GB GPU with PyTorch, please check the instructions at https://pytorch.org/get-started/locally/
-
-  warnings.warn(incompatible_device_warn.format(device_name, capability, " ".join(arch_list), device_name))
-Traceback (most recent call last):
-  File "automatic_sample_labeling.py", line 37, in <module>
-    main()
-  File "automatic_sample_labeling.py", line 17, in main
-    labels = torch.zeros(n, dtype=torch.long, device=device)
-RuntimeError: CUDA error: no kernel image is available for execution on the device
-CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
-For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
-Linux idun-07-02 4.18.0-348.el8.0.2.x86_64 #1 SMP Sun Nov 14 00:51:12 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
+Linux idun-04-01 4.18.0-348.el8.0.2.x86_64 #1 SMP Sun Nov 14 00:51:12 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
