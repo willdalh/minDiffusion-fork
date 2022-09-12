@@ -12,6 +12,42 @@ from PIL import Image
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
+import pandas as pd
+
+def identify_concepts(x, labels, label_of_interest, index_manager, device) -> float:
+    y = labels == label_of_interest
+
+    # Shuffle
+    # perm = torch.randperm(n)
+    # samples = samples[perm]
+    # labels = labels[perm]
+    # x = x[perm]
+    # y = y[perm]
+
+    # n_label_of_interest = (labels == label_of_interest).cpu().sum().item()
+    # indices = torch.nonzero(y).squeeze(1)
+    # non_indices = torch.nonzero(~y).squeeze(1)
+    # x = torch.cat([x[indices], x[non_indices][:n_label_of_interest]]).to(device)
+    # y = torch.cat([y[indices], y[non_indices][:n_label_of_interest]]).to(device)
+    # samples = torch.cat([samples[indices], samples[non_indices][:n_label_of_interest]]).to(device)
+    # labels = torch.cat([labels[indices], labels[non_indices][:n_label_of_interest]]).to(device)
+
+    x = x[index_manager[label_of_interest]]
+    y = y[index_manager[label_of_interest]]
+    labels = labels[index_manager[label_of_interest]]
+
+    # print(f"Number of samples: {x.shape[0]}")
+
+    test_size = 0.25
+    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=test_size, random_state=745)
+    clf = LogisticRegression()
+    clf.fit(x_train.reshape(x_train.shape[0], -1).cpu(), y_train.cpu())
+    accuracy = clf.score(x_test.reshape(x_test.shape[0], -1).cpu(), y_test.cpu())
+    # accuracy = 0
+    
+    return accuracy
+    
+
 
 def main():
     device = "cuda:0" if torch.cuda.is_available() else "cpu"
@@ -26,13 +62,13 @@ def main():
 
     # Load samples, labels and seeds
     dataset = torch.load(f"./datasets/{dataset_name}_samples.pth", map_location=device)
+    labels = torch.load(f"./datasets/{dataset_name}_labels.pth", map_location=device)
     seed = torch.load(f"./datasets/{dataset_name}_seed.pth", map_location=device)
 
     n = dataset.shape[0]
-    samples = dataset[:, 0][:, None, ...]
+    # samples = dataset[:, 0][:, None, ...]
     original_noise = dataset[:, 1][:, None, ...]
 
-    labels = torch.load(f"./datasets/{dataset_name}_labels.pth", map_location=device)
 
     whole_pipeline = []
     for m in model.eps_model.modules():
@@ -41,83 +77,72 @@ def main():
     whole_net = torch.nn.Sequential(*whole_pipeline)
     
 
-    steps = list(range(2, 0, -1))
-    digits_to_test = [3]
-    test_every = 1
+    steps = list(range(1000, 0, -1))
+    digits_to_test = [0]
+    test_every = 100
     logging_dir = f"./tcav_results/seeded_test"
     if not isdir(logging_dir):
         os.mkdir(logging_dir)
 
-    layers_to_inspect_indices = []
-    for i in range(len(whole_pipeline)):
-        if isinstance(whole_pipeline[i], torch.nn.Conv2d):
-            # print([e.__class__.__name__ for e in whole_pipeline[:i+1]])
-            layers_to_inspect_indices.append(i)
+    layers_to_inspect_indices = [i for i, m in enumerate(whole_net) if isinstance(m, nn.Conv2d)]
 
+
+    # Create index manager, used when we create the datasets for each label of interest
+    index_manager = {}
+    for d in digits_to_test:
+        is_label = labels == d
+        n_digits = (is_label).cpu().sum().item()
+        present_indices = torch.nonzero(is_label).squeeze(1)
+        absent_indices = torch.nonzero(~is_label).squeeze(1)
+        indices = torch.cat([present_indices, absent_indices[:n_digits]]).to(device)
+        index_manager[d] = indices
+    
+
+    
+    results_list = []
     x_t = original_noise
-    # Loop for T..0
-    torch.set_grad_enabled(False)
 
+    torch.set_grad_enabled(False)
     rng = torch.manual_seed(seed)
     _ = torch.randn(n, *(1, 28, 28)).to(device) # Continue RNG state
+    # Loop for T..1
     for t in steps:
         z = torch.randn(n, *(1, 28, 28)).to(device) if t > 1 else 0
-        eps = x.clone()
-        if t%test_every == 0: # Apply each layer individually
+        eps = x_t.clone()
+
+        if t%test_every == 0 or t==1: # Apply each layer individually
+
             for i, layer in enumerate(whole_pipeline):
-                eps = layer(eps)
+        
+                eps = layer(eps) 
                 if i in layers_to_inspect_indices:
                     # Suspend RNG
                     curr_rng_state = rng.get_state()
                     print(f"Testing at {t} and layer {i}")
                     
                     for label_of_interest in digits_to_test:
-                        pass
                         #Identify concepts here
-                    
+                        accuracy = identify_concepts(eps, labels, label_of_interest, index_manager, device)
+                        results_list.append([t, i, label_of_interest, accuracy])
+
                     # Resume RNG
                     rng.set_state(curr_rng_state)
         else: # Apply the whole network
-            eps = whole_net(x)
+            eps = whole_net(x_t)
+            
         
         x_t = (model.oneover_sqrta[t] * (x_t - eps * model.mab_over_sqrtmab[t]) + model.sqrt_beta_t[t] * z)
 
-        
-    quit()
+    # results_list to dataframe with columns: t, layer, digit_separated, accuracy and indices
 
-                
+    results = pd.DataFrame(results_list, columns=["t", "layer", "digit_separated", "accuracy"])
+    results.index.name = "id"
+    results.to_csv(f"{logging_dir}/{dataset_name}_results.csv")
 
-    # Start of RNG matters
-    
+
+
+
    
-    with torch.no_grad():
-        x = submodel(original_noise)
-    # End of RNG matters
-    y = labels == label_of_interest
-
-    # Shuffle
-    perm = torch.randperm(n)
-    samples = samples[perm]
-    labels = labels[perm]
-    x = x[perm]
-    y = y[perm]
-
-    n_label_of_interest = (labels == label_of_interest).cpu().sum().item()
-    indices = torch.nonzero(y).squeeze(1)
-    non_indices = torch.nonzero(~y).squeeze(1)
-    x = torch.cat([x[indices], x[non_indices][:n_label_of_interest]]).to(device)
-    y = torch.cat([y[indices], y[non_indices][:n_label_of_interest]]).to(device)
-    samples = torch.cat([samples[indices], samples[non_indices][:n_label_of_interest]]).to(device)
-    labels = torch.cat([labels[indices], labels[non_indices][:n_label_of_interest]]).to(device)
-    print(f"Number of samples: {x.shape[0]}")
-
-    test_size = 0.25
-    samples_train, samples_test, x_train, x_test, y_train, y_test = train_test_split(samples, x, y, test_size=test_size)
-    clf = LogisticRegression()
-    clf.fit(x_train.reshape(x_train.shape[0], -1).cpu(), y_train.cpu())
-    accuracy = clf.score(x_test.reshape(x_test.shape[0], -1).cpu(), y_test.cpu())
-    print(f"Accuracy: {accuracy}")
-    print(x_test.shape)
 
     # # Plot the samples
     # fig, axes = plt.subplots(2, 9, figsize=(10, 4))
