@@ -107,9 +107,10 @@ def main():
     _ = torch.randn(n, *(1, 28, 28)).to(device) # Continue RNG state
     # Loop for T..1
     for t in steps:
+        print(f"Step: {t}")
         z = torch.randn(n, *(1, 28, 28)).to(device) if t > 1 else 0
         eps = x_t.clone()
-
+        
         if t%test_every == 0 or t==1: # Apply each layer individually
 
             for i, layer in enumerate(whole_pipeline):
@@ -132,6 +133,17 @@ def main():
             
         
         x_t = (model.oneover_sqrta[t] * (x_t - eps * model.mab_over_sqrtmab[t]) + model.sqrt_beta_t[t] * z)
+
+    print(x_t.shape)
+    # Plot the samples
+    fig, axes = plt.subplots(1, 5, figsize=(10, 4))
+    for i, ax in enumerate(np.array(list(axes)).T):
+        ax.imshow(x_t[i].mean(dim=0).reshape(28, 28), cmap="gray")
+        # ax.set_title(f"Label: {predicted}")
+        # ax.imshow(samples_test[i].reshape(28, 28), cmap="gray")
+    # Save the figure
+    fig.savefig(f"{logging_dir}/{dataset_name}_samples.png")
+
 
     # results_list to dataframe with columns: t, layer, digit_separated, accuracy and indices
 
