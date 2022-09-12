@@ -78,8 +78,8 @@ def main():
     
 
     steps = list(range(1000, 0, -1))
-    digits_to_test = list(sorted([0, 1]))
-    test_every = 100
+    digits_to_test = list(sorted([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]))
+    test_every = 10
     logging_dir = f"./tcav_results/seeded_steps{len(steps)}_testevery{test_every}_digits{''.join([str(e) for e in digits_to_test])}"
     if not isdir(logging_dir):
         os.mkdir(logging_dir)
