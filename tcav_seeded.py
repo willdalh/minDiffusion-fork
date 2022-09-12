@@ -110,7 +110,7 @@ def main():
         print(f"Step: {t}")
         z = torch.randn(n, *(1, 28, 28)).to(device) if t > 1 else 0
         eps = x_t.clone()
-        
+
         if t%test_every == 0 or t==1: # Apply each layer individually
 
             for i, layer in enumerate(whole_pipeline):
@@ -119,7 +119,7 @@ def main():
                 if i in layers_to_inspect_indices:
                     # Suspend RNG
                     curr_rng_state = rng.get_state()
-                    print(f"Testing at {t} and layer {i}")
+                    
                     
                     for label_of_interest in digits_to_test:
                         #Identify concepts here
@@ -138,7 +138,7 @@ def main():
     # Plot the samples
     fig, axes = plt.subplots(1, 5, figsize=(10, 4))
     for i, ax in enumerate(np.array(list(axes)).T):
-        ax.imshow(x_t[i].mean(dim=0).reshape(28, 28), cmap="gray")
+        ax.imshow(x_t[i].mean(dim=0).reshape(28, 28).cpu(), cmap="gray")
         # ax.set_title(f"Label: {predicted}")
         # ax.imshow(samples_test[i].reshape(28, 28), cmap="gray")
     # Save the figure
