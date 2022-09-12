@@ -78,9 +78,9 @@ def main():
     
 
     steps = list(range(1000, 0, -1))
-    digits_to_test = [0]
+    digits_to_test = list(sorted([0, 1]))
     test_every = 100
-    logging_dir = f"./tcav_results/seeded_test"
+    logging_dir = f"./tcav_results/seeded_steps{len(steps)}_testevery{test_every}_digits{''.join([str(e) for e in digits_to_test])}"
     if not isdir(logging_dir):
         os.mkdir(logging_dir)
 
@@ -144,8 +144,6 @@ def main():
     # Save the figure
     fig.savefig(f"{logging_dir}/{dataset_name}_samples.png")
 
-
-    # results_list to dataframe with columns: t, layer, digit_separated, accuracy and indices
 
     results = pd.DataFrame(results_list, columns=["t", "layer", "digit_separated", "accuracy"])
     results.index.name = "id"
