@@ -19,6 +19,8 @@ from torchvision.datasets import MNIST
 from torchvision import transforms
 from torchvision.utils import save_image, make_grid
 
+from itertools import product
+
 
 def ddpm_schedules(beta1: float, beta2: float, T: int) -> Dict[str, torch.Tensor]:
     """
@@ -140,16 +142,32 @@ class DDPM(nn.Module):
             return x_i, original_noise
         return x_i
 
+def color_random(x):
+    # color_combs = list(product([0, 1], repeat=3))[1:][:-1]
+    color_combs = [(0, 0, 1), (0, 1, 0), (1, 0, 0), (0, 1, 1), (1, 0, 1), (1, 1, 0)]
+    channels_present = color_combs[torch.randint(0, len(color_combs), (1,))]
+    return torch.cat([x * ch_pr for ch_pr in channels_present], dim=0)
 
 def train_mnist(n_epoch: int = 100, device= "cuda:0" if torch.cuda.is_available() else "cpu") -> None:
 
-    ddpm = DDPM(eps_model=DummyEpsModel(1), betas=(1e-4, 0.02), n_T=1000)
+    use_colors = True
+    ddpm = DDPM(eps_model=DummyEpsModel(3), betas=(1e-4, 0.02), n_T=1000)
     ddpm.to(device)
 
+
+    # color_combs = list(product([0, 1], repeat=3))[1:][:-1]
+    
+
     size = (1, 28, 28) 
+    transforms_list = [transforms.ToTensor(), transforms.Resize(size[1:]), transforms.Normalize((0.5,), (1.0))]
+    if use_colors:
+        size = (3, 28, 28)
+        transforms_list.insert(1, transforms.Lambda(color_random))
+
     tf = transforms.Compose(
-        [transforms.ToTensor(), transforms.Resize(size[1:]), transforms.Normalize((0.5,), (1.0))]
+        transforms_list
     )
+
     import multiprocessing as mp
     print(f"Running with {device} and {mp.cpu_count()} cores")
     dataset = MNIST(
@@ -182,10 +200,10 @@ def train_mnist(n_epoch: int = 100, device= "cuda:0" if torch.cuda.is_available(
         with torch.no_grad():
             xh = ddpm.sample(16, size, device)
             grid = make_grid(xh, nrow=4)
-            save_image(grid, f"./contents/ddpm_sample_{i}.png")
+            save_image(grid, f"./contents/colors/ddpm_sample_colors_{i}.png")
 
             # save model
-            torch.save(ddpm.state_dict(), f"./contents/ddpm_mnist.pth")
+            torch.save(ddpm.state_dict(), f"./contents/colors/ddpm_mnist_colors.pth")
 
 
 if __name__ == "__main__":
