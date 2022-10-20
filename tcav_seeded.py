@@ -88,7 +88,6 @@ def main():
     digits_to_test = list(sorted([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]))
     test_every = 10
     logging_dir = f"./tcav_results/seeded_colors{use_colors}_steps{len(steps)}_testevery{test_every}_digits{''.join([str(e) for e in digits_to_test])}"
-    logging_dir = "./tcav_results/testing"
     if not isdir(logging_dir):
         os.mkdir(logging_dir)
 
