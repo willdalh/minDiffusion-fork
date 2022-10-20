@@ -61,7 +61,7 @@ def main():
     model.to(device)
     model.eval()
 
-    dataset_name = "colors/1000"
+    dataset_name = "colors/2000"
 
     # Load samples, labels and seeds
     dataset = torch.load(f"./datasets/{dataset_name}_samples.pth", map_location=device)

@@ -1,8 +1,10 @@
 import os
 os.environ['CUDA_LAUNCH_BLOCKING'] = "1"
 from superminddpm import DDPM, DummyEpsModel
-
+import matplotlib.pyplot as plt
 import torch
+import numpy as np
+
 
 def determine_colors(samples):
     x = samples + 0.5
@@ -56,7 +58,13 @@ def main():
     # print("sampled shape", sampled.shape)
     # print("original_noise shape", original_noise.shape)
 
-
+    fig, axes = plt.subplots(1, 5, figsize=(10, 4))
+    for i, ax in enumerate(np.array(list(axes)).T):
+        ax.imshow(sampled[i].permute(1, 2, 0).cpu())
+        # ax.set_title(f"Label: {predicted}")
+        # ax.imshow(samples_test[i].reshape(28, 28), cmap="gray")
+    # Save the figure
+    fig.savefig(f"./datasets/colors/{n}_samples_vis.png")
 
 if __name__ == "__main__":
     main()
