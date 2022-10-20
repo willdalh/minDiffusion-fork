@@ -103,7 +103,7 @@ def main():
     index_manager = {}
 
     for c in unique_concepts:
-        is_concept = (concept_list.cpu() == torch.Tensor(list(c))).all(dim=1) if test_colors else concept_list == c
+        is_concept = (concept_list == torch.Tensor(list(c)).to(device)).all(dim=1) if test_colors else concept_list == c
         # is_concept_indices = torch.nonzero(is_concept).squeeze(1)
 
         n_concepts = (is_concept).cpu().sum().item()
