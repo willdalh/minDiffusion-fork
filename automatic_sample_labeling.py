@@ -5,20 +5,36 @@ def main():
     model = MNISTClassifier(device)
     model.load_state_dict(torch.load("./saved_models/mnist_classifier.pth", map_location=device))
 
+    use_colors = True
     
-    dataset = torch.load("./datasets/980_samples.pth", map_location=device)
+    dataset = torch.load("./datasets/colors/2000_samples.pth", map_location=device)
     dataset.to(device)
-    seed = torch.load("./datasets/980_seed.pth", map_location=device).to(device)
-    torch.manual_seed(seed)
-    samples = dataset[:, 0][:, None, ...]
-    original_noise = dataset[:, 1][:, None, ...]
+    # dataset = dataset[0:10]
+    # seed = torch.load("./datasets/980_seed.pth", map_location=device).to(device)
+    # torch.manual_seed(seed)
+    samples = dataset[:, 0] if use_colors else dataset[:, 0][:, None, ...]
+
+    if use_colors:
+        samples = samples.mean(dim=1, keepdim=True) 
+        # Scale to [0, 1]
+        samples = (samples - samples.min()) / (samples.max() - samples.min())
+        # Scale to [-0.5, 0.5]
+        samples = samples - 0.5
+        print(samples.min(), samples.max())
+
+
+
+    # print(samples.amax(dim=(1, 2, 3)).mean())
+    # print(samples.amin(dim=(1, 2, 3)).mean())
+    # quit()
+    # original_noise = dataset[:, 1][:, None, ...]
 
     n = dataset.shape[0]
     labels = torch.zeros(n, dtype=torch.long, device=device)
     with torch.no_grad():
         labels = torch.argmax(model(samples), dim=1)
 
-    torch.save(labels, f"./datasets/{n}_labels.pth")
+    torch.save(labels, f"./datasets/colors/{n}_labels.pth")
 
     visualize = False
     if visualize:

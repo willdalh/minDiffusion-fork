@@ -67,6 +67,17 @@ def main():
     dataset = torch.load(f"./datasets/{dataset_name}_samples.pth", map_location=device)
     labels = torch.load(f"./datasets/{dataset_name}_labels.pth", map_location=device)
     seed = torch.load(f"./datasets/{dataset_name}_seed.pth", map_location=device)
+    if use_colors:
+        colors = torch.load(f"./datasets/{dataset_name}_colors.pth", map_location=device)
+        print(colors)
+        colors = colors.numpy()
+        colors = colors.tolist()
+        colors = [tuple(color) for color in colors]
+        unique_colors = list(set(colors))
+        print(unique_colors)
+
+    quit()
+    # ! FIX HEREEEEE and check how many have TRUE TRUE TRUE as color (should not be the case)
 
     n = dataset.shape[0]
     # samples = dataset[:, 0][:, None, ...]

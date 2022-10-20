@@ -9,7 +9,7 @@ import numpy as np
 def determine_colors(samples):
     x = samples + 0.5
     colors = x.sum(dim=(2, 3))
-    colors = colors / colors.max()
+    colors = colors / colors.amax(dim=(1), keepdim=True)
     return colors > 0.5
 
 
