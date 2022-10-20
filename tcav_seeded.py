@@ -23,7 +23,7 @@ def identify_concepts(x, concept_list, concept_of_interest, index_manager, devic
     # x = x.cpu()
     # concept_list = concept_list.cpu()
     print(x.device, concept_list.device)
-    y = (concept_list == torch.Tensor(concept_of_interest)).all(dim=1) if test_colors else concept_list == concept_of_interest
+    y = (concept_list == torch.Tensor(concept_of_interest).to(device)).all(dim=1) if test_colors else concept_list == concept_of_interest
 
     x = x[index_manager[concept_of_interest]]
     y = y[index_manager[concept_of_interest]]
