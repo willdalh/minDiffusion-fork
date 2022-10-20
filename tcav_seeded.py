@@ -22,7 +22,7 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 def identify_concepts(x, concept_list, concept_of_interest, index_manager, device, test_colors = False) -> float:
     # x = x.cpu()
     # concept_list = concept_list.cpu()
-
+    print(x.device, concept_list.device)
     y = (concept_list == torch.Tensor(concept_of_interest)).all(dim=1) if test_colors else concept_list == concept_of_interest
 
     x = x[index_manager[concept_of_interest]]
