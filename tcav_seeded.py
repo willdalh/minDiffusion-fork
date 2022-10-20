@@ -20,8 +20,8 @@ import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning) 
 
 def identify_concepts(x, concept_list, concept_of_interest, index_manager, device, test_colors = False) -> float:
-    x = x.cpu()
-    concept_list = concept_list.cpu()
+    # x = x.cpu()
+    # concept_list = concept_list.cpu()
 
     y = (concept_list == torch.Tensor(concept_of_interest)).all(dim=1) if test_colors else concept_list == concept_of_interest
 
@@ -103,7 +103,7 @@ def main():
     index_manager = {}
 
     for c in unique_concepts:
-        is_concept = (concept_list == torch.Tensor(list(c))).all(dim=1) if test_colors else concept_list == c
+        is_concept = (concept_list.cpu() == torch.Tensor(list(c))).all(dim=1) if test_colors else concept_list == c
         # is_concept_indices = torch.nonzero(is_concept).squeeze(1)
 
         n_concepts = (is_concept).cpu().sum().item()
