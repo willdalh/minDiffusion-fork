@@ -1,6 +1,7 @@
 #!/bin/sh
 #SBATCH --partition=GPUQ
 #SBATCH --gres=gpu:V100:1
+#SBATCH --constraint="P100|V100"
 #SBATCH --account=ie-idi
 #SBATCH --time=38:30:00
 #SBATCH --nodes=1
