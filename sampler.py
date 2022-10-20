@@ -4,6 +4,13 @@ from superminddpm import DDPM, DummyEpsModel
 
 import torch
 
+def determine_colors(samples):
+    x = samples + 0.5
+    colors = x.sum(dim=(2, 3))
+    colors = colors / colors.max()
+    return colors > 0.5
+
+
 def main():
     use_colors = True
 
@@ -17,7 +24,7 @@ def main():
     # sampled = model.sample(1, (1, 28, 28), device)
     # print(sampled.shape)
 
-    n = 1000
+    n = 2000
     dataset = torch.Tensor(n, 2, 3, 28, 28) if use_colors else torch.Tensor(n, 2, 28, 28) 
     # seeds = torch.randint(0, 10000000, (n,), dtype=torch.long)
 
@@ -26,6 +33,7 @@ def main():
     with torch.no_grad():
         # for i in range(n):
         sampled, original_noise = model.sample(n, (3 if use_colors else 1, 28, 28), device, return_original_noise=True)
+        
         dataset[:, 0] = sampled if use_colors else sampled[:, 0]
         dataset[:, 1] = original_noise if use_colors else original_noise[:, 0]
             # if i % 40 == 0:
@@ -34,6 +42,9 @@ def main():
         # dataset[:, 1] = original_noise[:, 0]
 
     if use_colors:
+        # Determine colors
+        colors = determine_colors(dataset[:, 0])
+        torch.save(colors, f"./datasets/colors/{n}_colors.pth")
         torch.save(dataset, f"./datasets/colors/{n}_samples.pth")
         torch.save(seed, f"./datasets/colors/{n}_seed.pth")
     else:   

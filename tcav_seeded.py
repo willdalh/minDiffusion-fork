@@ -50,15 +50,18 @@ def identify_concepts(x, labels, label_of_interest, index_manager, device) -> fl
 
 
 def main():
+
+    use_colors = True
+
     device = "cuda:0" if torch.cuda.is_available() else "cpu"
 
     # Load the diffusion model
-    model = DDPM(eps_model=DummyEpsModel(1), betas=(1e-4, 0.02), n_T=1000)
-    model.load_state_dict(torch.load("./contents/ddpm_mnist.pth", map_location=device))
+    model = DDPM(eps_model=DummyEpsModel(3 if use_colors else 1), betas=(1e-4, 0.02), n_T=1000)
+    model.load_state_dict(torch.load("./contents/colors2/ddpm_mnist_colors.pth", map_location=device))
     model.to(device)
     model.eval()
 
-    dataset_name = "980"
+    dataset_name = "colors/1000"
 
     # Load samples, labels and seeds
     dataset = torch.load(f"./datasets/{dataset_name}_samples.pth", map_location=device)
@@ -67,7 +70,8 @@ def main():
 
     n = dataset.shape[0]
     # samples = dataset[:, 0][:, None, ...]
-    original_noise = dataset[:, 1][:, None, ...]
+
+    original_noise = dataset[:, 1] if use_colors else dataset[:, 1][:, None, ...]
 
 
     whole_pipeline = []
@@ -80,7 +84,7 @@ def main():
     steps = list(range(1000, 0, -1))
     digits_to_test = list(sorted([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]))
     test_every = 10
-    logging_dir = f"./tcav_results/seeded_steps{len(steps)}_testevery{test_every}_digits{''.join([str(e) for e in digits_to_test])}"
+    logging_dir = f"./tcav_results/seeded_colors{use_colors}_steps{len(steps)}_testevery{test_every}_digits{''.join([str(e) for e in digits_to_test])}"
     if not isdir(logging_dir):
         os.mkdir(logging_dir)
 
