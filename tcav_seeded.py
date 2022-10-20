@@ -95,7 +95,7 @@ def main():
 
 
     # Create index manager, used when we create the datasets for each concept of interest
-    unique_concepts = list(map(tuple, valid_colors.numpy())) if test_colors else digits_to_test
+    unique_concepts = list(map(tuple, valid_colors.cpu().numpy())) if test_colors else digits_to_test
     concept_list = colors if test_colors else labels
     index_manager = {}
 
