@@ -15,7 +15,7 @@ def plot_samples(samples, title=None, normalize=False):
     for i in range(n):
         curr_axs = axs if n == 1 else axs[i]
         if samples.shape[1] == 1:
-            curr_axs.imshow(to_plot[i, 0].cpu(), cmap="gray")
+            curr_axs.imshow(to_plot[i, 3].cpu(), cmap="gray")
         else:
             curr_axs.imshow(to_plot[i].cpu())
            
