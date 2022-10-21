@@ -21,8 +21,15 @@ class DDIM(DDPM):
         self.eta = eta
 
     # modified from https://github.com/ermongroup/ddim/blob/51cb290f83049e5381b09a4cc0389f16a4a02cc9/functions/denoising.py#L10-L32
-    def sample(self, n_sample: int, size, device) -> torch.Tensor:
-        x_i = torch.randn(n_sample, *size).to(device)  # x_T ~ N(0, 1)
+    def sample(self, n_sample: int, size, device, starting_noise=None) -> torch.Tensor:
+        if starting_noise == None:
+            x_i = torch.randn(n_sample, *size).to(device)  # x_T ~ N(0, 1)
+        else:
+            if (size != starting_noise.shape[1:]):
+                raise ValueError("Starting noise shape does not match size")
+            if (n_sample != starting_noise.shape[0]):
+                raise ValueError("Starting noise batch size does not match n_sample")
+            x_i = starting_noise.clone()
 
         for i in range(self.n_T, 1, -1):
             z = torch.randn(n_sample, *size).to(device) if i > 1 else 0
