@@ -20,9 +20,6 @@ import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning) 
 
 def identify_concepts(x, concept_list, concept_of_interest, index_manager, device, test_colors = False) -> float:
-    # x = x.cpu()
-    # concept_list = concept_list.cpu()
-    print(x.device, concept_list.device)
     y = (concept_list == torch.Tensor(concept_of_interest).to(device)).all(dim=1) if test_colors else concept_list == concept_of_interest
 
     x = x[index_manager[concept_of_interest]]
@@ -90,7 +87,7 @@ def main():
     steps = list(range(1000, 0, -1))
     digits_to_test = list(sorted([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]))
     test_every = 10
-    logging_dir = f"./tcav_results/seeded_colors{use_colors}_steps{len(steps)}_testevery{test_every}_digits{''.join([str(e) for e in digits_to_test])}"
+    logging_dir = f"./tcav_results/seeded_colors{use_colors}_steps{len(steps)}_testevery{test_every}_concept{'Color' if test_colors else 'Digit'}"
     if not isdir(logging_dir):
         os.mkdir(logging_dir)
 
@@ -157,20 +154,24 @@ def main():
         
         x_t = (model.oneover_sqrta[t] * (x_t - eps * model.mab_over_sqrtmab[t]) + model.sqrt_beta_t[t] * z)
 
+    results = pd.DataFrame(results_list, columns=["t", "layer", "concept_separated", "accuracy"])
+    results.index.name = "id"
+    results.to_csv(f"{logging_dir}/{n}_results.csv")
+
     print(x_t.shape)
     # Plot the samples
     fig, axes = plt.subplots(1, 5, figsize=(10, 4))
     for i, ax in enumerate(np.array(list(axes)).T):
-        ax.imshow(x_t[i].mean(dim=0).reshape(28, 28).cpu(), cmap="gray")
+        if use_colors:
+            ax.imshow(x_t[i].permute(1, 2, 0).cpu().numpy())
+        else:
+            ax.imshow(x_t[i].mean(dim=0).reshape(28, 28).cpu(), cmap="gray")
         # ax.set_title(f"Label: {predicted}")
         # ax.imshow(samples_test[i].reshape(28, 28), cmap="gray")
     # Save the figure
-    fig.savefig(f"{logging_dir}/{dataset_name}_samples.png")
+    fig.savefig(f"{logging_dir}/{n}_samples.png")
 
 
-    results = pd.DataFrame(results_list, columns=["t", "layer", "concept_separated", "accuracy"])
-    results.index.name = "id"
-    results.to_csv(f"{logging_dir}/{dataset_name}_results.csv")
 
 
 
